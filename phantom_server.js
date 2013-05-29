@@ -109,7 +109,7 @@ function setApplication(app, callback) {
     App = app;
 
     // Initializes special class members of the application
-    App.Callback = function() {};
+    App.Callback = function() {};  // FIXME: is this still necessary?
     App.Methods = {};
 
     // Create lookup hash for App's apiDelegate function
@@ -122,18 +122,13 @@ function setApplication(app, callback) {
     callback();
 }
 
+// FIXME set applicable HTTP status code for each type of response.
 function apiDelegate(method_name, params, callback) {
-    App.Callback = callback;
-    //// console.log('apiDelegate: method name: %j', method_name);
-    //// console.log('apiDelegate: params %j', params);
-
     if (method_name in App.Methods) {
-        // FIXME set status code 200
         var result = App[method_name].call(App, params);
-        App.Callback(result);
+        callback(result);
     } else {
-        // FIXME set status code 401 Bad Request
-        App.Callback({method: method_name, valid_method: false});
+        callback({method: method_name, valid_method: false});
     }
 }
 
