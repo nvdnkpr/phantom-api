@@ -182,8 +182,7 @@ function requestHandler(request, response) {
         //------------------------------------------------------------
         } else if (!exists) { 
             var head = {status_code: 404, headers: {"Content-Type": "text/plain"}};
-            var http_path = filename.replace(/^.+new\.tektwit\/public/, '');
-            var body = '404 resource not found [' + http_path + ']';
+            var body = '404 resource not found [' + urlObj.path + ']';
             SendResponse(response, head, body);
             return;
 
