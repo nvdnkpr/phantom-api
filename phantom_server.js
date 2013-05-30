@@ -135,7 +135,7 @@ function apiDelegate(method_name, params, callback) {
 //--------------------------------------------------------------------
 // Phantom Server request handler
 //--------------------------------------------------------------------
-function requestHandler(request, response) {
+function phantomRequestHandler(request, response) {
 
     var uri = url.parse(request.url).pathname;
     var filename = Config.DOC_ROOT + uri;
@@ -243,7 +243,7 @@ function requestHandler(request, response) {
             });
         }
     });
-} // end function requestHandler()
+} // end function phantomRequestHandler()
 
 
 function SendResponse(res, head, body) {
@@ -256,7 +256,7 @@ function SendResponse(res, head, body) {
 // Instantiate the Web Server
 //--------------------------------------------------------------------
 function instantiate_server() {
-    var server = http.createServer(requestHandler);
+    var server = http.createServer(phantomRequestHandler);
     server.listen(Config.PORT);
 
     var log_msg = Config.SERVER_NAME + " started running at";
