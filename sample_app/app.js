@@ -22,8 +22,8 @@ var MyApp = new function() {
 // get user-defined config
 var conf = require('./config').config;
 
-// Instantiate Phantom Server object
-var phantom = require('../phantom_server');
+// instantiate phantom object
+var phantom = require('phantom');
 
-// start Phantom Server
+// start phantom application server
 phantom.start(conf, MyApp);
