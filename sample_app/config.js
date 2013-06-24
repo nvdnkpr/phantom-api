@@ -1,15 +1,19 @@
 /* Sample config.js
  * 
- * In your own app's config.js file, you are encouraged to hard-code
- * the DOC_ROOT value instead of reyling on the dynamic approach used
- * in this sample config.js file.
- */
+ * This file should be in the same directory as your application
+ * (app.js).
+ * 
+ * Only override keys that you want. Minimally, this would be DOC_ROOT
+ * and PORT.
+*/
 
-// TODO: modify header mapping here and in phantom server for more
-// flexibility.
 exports.config = {
-         DOC_ROOT: process.cwd() + '/public',
-             PORT: 5023,
-     X_POWERED_BY: "gold/jezzadebate",
-      SERVER_NAME: "phantom Node.js/" + process.version
+    DOC_ROOT: '/full/path/to/application/doc_root',
+    PORT: 5023,
+
+    // The following keys aren't strictly necessary, but may enhance
+    // your server's personalization.
+    HOST: 'my.domain.tld',
+    X_POWERED_BY: 'Omniscient Overlords',
+    SERVER_NAME: 'The Phantom Node.js Server'
 };
