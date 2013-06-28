@@ -15,5 +15,11 @@ exports.config = {
     // your server's personalization.
     HOST: 'my.domain.tld',
     X_POWERED_BY: 'Omniscient Overlords',
-    SERVER_NAME: 'The Phantom Node.js Server'
+    SERVER_NAME: 'The Phantom Node.js Server',
+
+    // When set to false, every request will cause the index.html
+    // file to be served from disk. If set to true, the index.html
+    // file will be stored in the server's memory and subsequently
+    // served from there instead from disk.
+    CACHE_INDEX_FILE: false
 };
