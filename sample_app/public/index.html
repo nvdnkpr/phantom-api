@@ -113,13 +113,13 @@ function ClientSideClass() {
     };
 
     this.getFatherOfThor = function() {
-        $.post('/api/postFatherOfThor', {},
+        $.post('/api/postFatherOfThor', {greeting: 'Good afternoon'},
                function(r) {$father.html(r.name);},
                'json');
     };
 
     this.getBrotherOfThor = function() {
-        $.get('/api/getBrotherOfThor', {},
+        $.get('/api/getBrotherOfThor', {greeting: 'Good morning'},
               function(r) {$brother.html(r.name);},
               'json');
     };
@@ -151,7 +151,7 @@ function ClientSideClass() {
                     $sister.empty();
                     break;
                 default:
-                    console.log('realation: ' + relation);
+                    console.log('relation: ' + relation);
             }
         });
     };
