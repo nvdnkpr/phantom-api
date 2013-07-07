@@ -19,7 +19,7 @@ var MyApp = new function() {
     // @param callback - callback function
     // @return hash object via callback
     this.getBrotherOfThor = function(params, callback) {
-        var greeting = params.greeting
+        var greeting = params.greeting;
 
         // some asynchronous stuff...
 
