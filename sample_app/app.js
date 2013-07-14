@@ -41,27 +41,29 @@ var MyApp = new function() {
 //
 // Note: Until phantom is in the npm Registry, you may
 // need to express the full path to the phantom directory,
-// e.g., var phantom = require('/path/to/phantom')
-var phantom = require('phantom');
+// e.g., var phantom = require('/path/to/phantom-api')
+var phantom = require('phantom-api');
 
-// Run the application with phantom power.
+// Run the application with phantom power. That's it!
 phantom.run(MyApp);
 
-// NOTE: By default, phantom will listen on port 8008 for HTTP
-// requests and has /var/www/public set as its doc root.
+
+
+// NOTE: By default, phantom-api listens on port 5023.
 //
 // These are easily changed with a custom config file that is created
 // in the same directory as this app.js file. The filename name should
-// be "config.js" and would look like the following (taken from the
+// be "config.js" and would look like the following (similar to the
 // sample config.js provided).
 // 
 // exports.config = {
-//    DOC_ROOT: '/full/path/to/application/doc_root',
+//    DOC_ROOT: '/var/www/phantom-api/public',
 //    PORT: 5023,
 //
 //    // The following keys aren't strictly necessary, but may enhance
-//    // your server's personalization.
+//    // your server's personalization. Leave HOST: null to be able to
+//    // access http://localhost:5023
 //    HOST: 'my.domain.tld',
-//    X_POWERED_BY: 'Omniscient Overlords',
-//    SERVER_NAME: 'The Phantom Node.js Server'
+//    X_POWERED_BY: 'Omniscient Overlords, LLC',
+//    SERVER_NAME: 'Phantom API Node.js Server'
 //};

@@ -1,4 +1,4 @@
 {
-    "name": "phantom",
-    "main": "./lib/phantom.js"
+    "name": "phantom-api",
+    "main": "./lib/phantom-api.js"
 }

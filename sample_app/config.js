@@ -8,7 +8,17 @@
 */
 
 exports.config = {
-    DOC_ROOT: '/full/path/to/application/doc_root',
+
+    // This is the directory from where index.html would be served
+    // (and other, static files: image, js, and css). Examples:
+    // 
+    //     http://localhost:5023/
+    //     http://localhost:5023/login.html
+    // 
+    // The DOC_ROOT directory is irrelevant with API-based URLs, e.g.:
+    //
+    //     http://localhost:5023/api/methodname/?k1=v1&k2=v2
+    DOC_ROOT: '/var/www/phantom-app/public',
     PORT: 5023,
 
     // The following keys aren't strictly necessary, but may enhance
@@ -22,7 +32,7 @@ exports.config = {
 
     X_POWERED_BY: 'Omniscient Overlords, LLC',
 
-    SERVER_NAME: 'The Phantom Node.js Server',
+    SERVER_NAME: 'Phantom API Node.js Server',
 
     // When set to false, every request will cause the index.html
     // file to be served from disk. If set to true, the index.html
