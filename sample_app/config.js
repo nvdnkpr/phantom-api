@@ -13,8 +13,15 @@ exports.config = {
 
     // The following keys aren't strictly necessary, but may enhance
     // your server's personalization.
-    HOST: 'my.domain.tld',
-    X_POWERED_BY: 'Omniscient Overlords',
+
+    // If HOST is left null, then any reachable domain at the defined
+    // port will access the phantom-api server, e.g., http://localhost:5023.
+    // Define a host to restrict access to the defined host name, e.g.,
+    // HOST: 'my.domain.tld'
+    HOST: null,
+
+    X_POWERED_BY: 'Omniscient Overlords, LLC',
+
     SERVER_NAME: 'The Phantom Node.js Server',
 
     // When set to false, every request will cause the index.html
