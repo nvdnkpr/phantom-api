@@ -7,5 +7,6 @@
   "license":     "MIT",
   "repository":  {"type": "git", "url": "git@github.com:gold/phantom-api.git"},
   "main":        "./lib/phantom-api.js",
+  "files":       ["README.md", "lib", "sample_app"],
   "author":      {"name": "Gerry Gold", "email": "gerry.gold@gmail.com"}
 }
