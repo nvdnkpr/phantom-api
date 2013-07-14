@@ -1,4 +1,11 @@
 {
-    "name": "phantom-api",
-    "main": "./lib/phantom-api.js"
+  "name":        "phantom-api",
+  "version":     "1.0",
+  "description": "A flexible, simple, and powerful RESTful api framework that disappears to allow you to focus on the application, not the framework.",
+  "keywords":    ["API", "REST", "framework", "web services"],
+  "homepage":    "https://github.com/gold/phantom-api",
+  "license":     "MIT",
+  "repository":  {"type": "git", "url": "git@github.com:gold/phantom-api.git"},
+  "main":        "./lib/phantom-api.js",
+  "author":      {"name": "Gerry Gold", "email": "gerry.gold@gmail.com"}
 }
