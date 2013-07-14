@@ -1,7 +1,7 @@
 var MyApp = new function() {
 
     var initialize = function() {
-        console.log('1. MyApp initialized');
+        console.log("\nMyApp initialized.\n");
     };
 
     // POST request
