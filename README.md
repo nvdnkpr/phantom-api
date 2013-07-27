@@ -31,7 +31,7 @@ Try calling a private method:
 
 $ curl -i "http://localhost:5023/api/_initialize/"
 
-The following example demonstrates the simple power of phantom-api.
+The following example demonstrates the powerful, yet simple, phantom-api.
 
 This sample API request includes:
 
