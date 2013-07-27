@@ -1,16 +1,11 @@
+var phantom = require('phantom-api');
+
 var MyApp = new function() {
 
-    var initialize = function() {
+    // This is a private method because its name begins with "_"
+    this._initialize = function() {
         console.log("\nMyApp initialized.\n");
-    };
-
-    // POST request
-    //
-    // @param params - hash object
-    // @return hash object
-    this.postFatherOfThor = function(params) {
-        var greeting = params.greeting;
-        return {name: greeting + ', Odin'};
+        this.brother = 'Loki';
     };
 
     // GET request
@@ -23,7 +18,7 @@ var MyApp = new function() {
 
         // some asynchronous stuff...
 
-        callback({name: greeting + ', Loki'});
+        callback({name: greeting + ', ' + this.brother});
     };
 
     // GET request
@@ -34,19 +29,20 @@ var MyApp = new function() {
         return {name: 'Vera'};
     };
 
-    initialize();
+    // POST request
+    //
+    // @param params - hash object
+    // @return hash object via callback
+    this.postFatherOfThor = function(params, callback) {
+        var father = parseInt(params.id, 10) === 46 ? 'Odin' : 'unknown';
+        var result = {father: father, params: params};
+        callback(result);
+    };
+
+    this._initialize();
 };
 
-// Instantiate phantom object.
-//
-// Note: Until phantom is in the npm Registry, you may
-// need to express the full path to the phantom directory,
-// e.g., var phantom = require('/path/to/phantom-api')
-var phantom = require('phantom-api');
-
-// Run the application with phantom power. That's it!
 phantom.run(MyApp);
-
 
 
 // NOTE: By default, phantom-api listens on port 5023.
