@@ -12,7 +12,7 @@ run application
 
 1. $ npm install phantom-api
 
-2. $ cd sample_app/
+2. $ cd node_modules/phantom-api/sample_app/
 
 3. $ node app.js
 
@@ -31,7 +31,11 @@ Try calling a private method:
 
 $ curl -i "http://localhost:5023/api/_initialize/"
 
-The following example demonstrates the powerful, yet simple, phantom-api.
+If a method does not exist or it exists but its name begins with "_"
+(private method), it is not accessible via the API.
+
+The following example demonstrates the powerful, flexible, and simple
+phantom-api.
 
 This sample API request includes:
 
