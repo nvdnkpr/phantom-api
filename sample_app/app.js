@@ -13,12 +13,12 @@ var MyApp = new function() {
     // @param params - hash object
     // @param callback - callback function
     // @return hash object via callback
-    this.getBrotherOfThor = function(params, callback) {
+    this.getBrotherOfThor = function( params, callback ) {
         var greeting = params.greeting;
 
         // some asynchronous stuff...
 
-        callback({name: greeting + ', ' + this.brother});
+        callback( {name: greeting + ', ' + this.brother} );
     };
 
     // GET request
@@ -33,16 +33,22 @@ var MyApp = new function() {
     //
     // @param params - hash object
     // @return hash object via callback
-    this.postFatherOfThor = function(params, callback) {
-        var father = parseInt(params.id, 10) === 46 ? 'Odin' : 'unknown';
+    this.postFatherOfThor = function( params, callback ) {
+        var father = parseInt( params.id, 10 ) === 46 ? 'Odin' : 'unknown';
         var result = {father: father, params: params};
-        callback(result);
+
+        // Override phantom's default status code setting.
+        if ( father === 'unknown' ) {
+            phantom.setHttpStatusCode(500);
+        }
+
+        callback( result );
     };
 
     this._initialize();
 };
 
-phantom.run(MyApp);
+phantom.run( MyApp );
 
 
 // NOTE: By default, phantom-api listens on port 5023.

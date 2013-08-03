@@ -51,3 +51,24 @@ the first parameter to the server method. Again, please view
 sample_app/app.js for application details.
 
 $ curl -d "x=1" -H "X-Approved-By: Hit Girl" "http://localhost:5023/api/v2.0/postFatherOfThor/46/?y=2"
+
+custom features
+---------------
+
+phantom-api automatically takes care of setting HTTP response headers,
+status codes, etc. so you, as a developer, don't have to worry about
+such things. However, there may be cases when the logic of your
+application requires that you override phantom-api's settings.
+
+Before your application returns its response (via return or callback()
+method), you can manually override the default HTTP status code in the
+response. Example code snippet in your method:
+
+    if ( something unexpectedly bad happens ) {
+        phantom.setHttpStatusCode(500);
+    }
+
+    callback( result );
+
+The ability to set custom HTTP response headers to similarly override
+phantom's default behavior will be forthcoming. Stay tuned!
