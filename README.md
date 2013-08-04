@@ -58,8 +58,8 @@ sample_app/app.js for application details.
 custom features
 ---------------
 
-phantom.setHttpStatusCode()
-phantom.setHttpResponseHeader()
+ - phantom.setHttpStatusCode()
+ - phantom.setHttpResponseHeader()
 
 phantom-api automatically takes care of setting HTTP response headers,
 status codes, etc. so you, as a developer, don't have to worry about
