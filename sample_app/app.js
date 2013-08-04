@@ -18,6 +18,10 @@ var MyApp = new function() {
 
         // some asynchronous stuff...
 
+        // Set custom HTTP Response header (optional)
+        var header = {"X-Approved-By": "Johannes Ockeghem"};
+        phantom.setHttpResponseHeader( header );
+
         callback( {name: greeting + ', ' + this.brother} );
     };
 
