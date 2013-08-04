@@ -1,6 +1,6 @@
 {
   "name":        "phantom-api",
-  "version":     "1.6.11",
+  "version":     "1.6.12",
   "description": "A flexible, simple, and powerful RESTful api framework that disappears to allow you to focus on the application, not the framework.",
   "keywords":    ["API", "REST", "framework", "web services"],
   "homepage":    "https://github.com/gold/phantom-api",
