@@ -55,6 +55,26 @@ sample_app/app.js for application details.
 
     $ curl -d "x=1" -H "X-Approved-By: Hit Girl" "http://localhost:5023/api/v2.0/postFatherOfThor/46/?y=2"
 
+sending JSON payload requests
+-----------------------------
+
+If the client makes a request which sends a JSON string as its payload
+to an API method, phantom-api provides access to the parsed JSON
+object via params._json. Example curl request:
+
+    $ curl -X POST -H "Content-Type: application/json" -d \
+        '{"cities":["Seoul","Shanghai","Taipei"]}' \
+        http://localhost:5023/api/postFatherOfThor/46
+
+And then the method gets the array of cities thusly:
+
+    this.postFatherOfThor = function( params, callback ) {
+        var cities = params._json["cities"];
+    }
+
+If the JSON string is malformed and fails to parse, then the error is
+available to the method via params._error.
+
 custom features
 ---------------
 

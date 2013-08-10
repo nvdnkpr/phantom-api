@@ -39,7 +39,7 @@ var MyApp = new function() {
     // @return hash object via callback
     this.postFatherOfThor = function( params, callback ) {
         var father = parseInt( params.id, 10 ) === 46 ? 'Odin' : 'unknown';
-        var result = {father: father, params: params};
+        var result = {father: father, request_params: params};
 
         // Override phantom's default status code setting.
         if ( father === 'unknown' ) {
