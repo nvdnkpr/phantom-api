@@ -118,6 +118,6 @@ default setting.
 Duplicate key evaluation is performed case insensitively; if your
 custom key name is "Content-type" and phantom's is spelled
 "Content-Type" then the duplicate key will be found and your custom
-setting will replace it, perserving the case of your custom key.
+setting will replace it, preserving the case of your custom key.
 
 Have fun!
