@@ -53,7 +53,8 @@ the JSON response includes the "params" object, which was received as
 the first parameter to the server method. Again, please view
 sample_app/app.js for application details.
 
-    $ curl -d "x=1" -H "X-Approved-By: Hit Girl" "http://localhost:5023/api/v2.0/postFatherOfThor/46/?y=2"
+    $ curl -d "x=1" -H "X-Approved-By: Hit Girl" \
+        "http://localhost:5023/api/v2.0/postFatherOfThor/46/?y=2"
 
 sending JSON payload requests
 -----------------------------
@@ -120,4 +121,51 @@ custom key name is "Content-type" and phantom's is spelled
 "Content-Type" then the duplicate key will be found and your custom
 setting will replace it, preserving the case of your custom key.
 
+cache mechanism
+---------------
+
+phantom-api uses a built-in key/value store for saving objects in
+memory (currently not registered as a module with npm). Inspired by
+the movie, the class's name is TotalRecall and is exposed by the
+phantom-api module.
+
+From within your application, the following examples illustrate what
+is possible with TotalRecall():
+
+    var phantom = require("phantom-api");
+
+    var cache = new phantom.TotalRecall();
+
+    // Add something to the cache.
+    cache.put( "myKey", stored_data );
+
+    // Check if key is in the cache and retrieve data.
+    if ( cache.keyExists("myKey") ) {
+        var stored_data = cache.get( "myKey" );
+    }
+
+    // Retrieve data from cache with optional 2nd argument.
+    //
+    // if "ipAddress" exists in cache, returns value from cache.
+    //
+    // If "ipAddress" key does not exist, returns value of
+    // 2nd argument.
+    // 
+    // If "ipAddress" key does not exist and no 2nd argument
+    // is provided, returns null.
+    //
+    // This behavior was copied from Python's get() function.
+    var data = cache.get( "ipAddress", "127.0.0.1" );
+
+    // Remove key/value from cache.
+    cache.removeKey( "myKey" );
+
+    // Clear entire cache.
+    cache.clear();
+
+    // Retrieve list of keys.
+    var key_list = cache.keys();
+
 Have fun!
+
+Gerry Gold August 2013
