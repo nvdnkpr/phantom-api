@@ -79,8 +79,30 @@ available to the method via params._error.
 custom features
 ---------------
 
+ - phantom.setCustomConfig()
  - phantom.setHttpStatusCode()
  - phantom.setHttpResponseHeader()
+
+Instead of using a config.js for user-defined config values, an inline
+object can be set just before phantom.run() is called in your app,
+e.g.:
+
+    var phantom = require("phantom-api");
+
+    var MyApp = new function() {
+
+    }
+
+    var conf = {
+        PORT: 80,
+        DOC_ROOT: "/var/www/my_sick_and_amazing_app/public"
+    };
+
+    phantom.setCustomConfig( conf );
+    phantom.run( MyApp );
+
+If setCustomConfig() method is called, then reading and processing
+config.js is ignored.
 
 phantom-api automatically takes care of setting HTTP response headers,
 status codes, etc. so you, as a developer, don't have to worry about
