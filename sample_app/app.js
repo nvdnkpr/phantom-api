@@ -1,11 +1,11 @@
-var phantom = require('phantom-api');
+var phantom = require("phantom-api");
 
-var MyApp = new function() {
+var MyClass = function() {
 
     // This is a private method because its name begins with "_"
     this._initialize = function() {
         console.log("\nMyApp initialized.\n");
-        this.brother = 'Loki';
+        this.brother = "Loki";
     };
 
     // GET request
@@ -22,7 +22,7 @@ var MyApp = new function() {
         var header = {"X-Approved-By": "Johannes Ockeghem"};
         phantom.setHttpResponseHeader( header );
 
-        callback( {name: greeting + ', ' + this.brother} );
+        callback( {name: greeting + ", " + this.brother} );
     };
 
     // GET request
@@ -30,7 +30,7 @@ var MyApp = new function() {
     // @param void
     // @return hash object
     this.getSisterOfThor = function() {
-        return {name: 'Vera'};
+        return {name: "Vera"};
     };
 
     // POST request
@@ -38,11 +38,11 @@ var MyApp = new function() {
     // @param params - hash object
     // @return hash object via callback
     this.postFatherOfThor = function( params, callback ) {
-        var father = parseInt( params.id, 10 ) === 46 ? 'Odin' : 'unknown';
+        var father = parseInt( params.id, 10 ) === 46 ? "Odin" : "unknown";
         var result = {father: father, request_params: params};
 
         // Override phantom's default status code setting.
-        if ( father === 'unknown' ) {
+        if ( father === "unknown" ) {
             phantom.setHttpStatusCode(500);
         }
 
@@ -52,8 +52,22 @@ var MyApp = new function() {
     this._initialize();
 };
 
-phantom.run( MyApp );
+phantom.run( MyClass );
 
+// When your application grows, individual files are created to avoid
+// a monolithic, unmaintainable code base.
+//
+// How does phantom know about multiple modules? The run() method also
+// accepts an array of functions/objects:
+//
+//     var MyClass_1 = require("./lib/MyClass_1").MyClass_1,
+//         MyClass_2 = require("./lib/MyClass_2").MyClass_2,
+//         MyClass_3 = require("./lib/MyClass_3").MyClass_3;
+//
+//     phantom.run( [MyClass_1, MyClass_2, MyClass_3] );
+//
+// phantom will aggregate all of the public API methods from the
+// combined objects. Duplicate method names aren't allowed.
 
 // NOTE: By default, phantom-api listens on port 5023.
 //

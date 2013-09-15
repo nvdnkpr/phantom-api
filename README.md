@@ -76,6 +76,76 @@ And then the method gets the array of cities thusly:
 If the JSON string is malformed and fails to parse, then the error is
 available to the method via params._error.
 
+create your own web services
+----------------------------
+
+Below is an example of how you could create app.js:
+
+    var phantom = require("phantom-api");
+
+    // Both User and Image functions could be in the same file or separate
+    // files, in which case they'd both could be required in app.js.
+    var User = function() {
+
+        // Merely by defining a function pointer using the following syntax,
+        // "getuser" becomes a public API
+        this.getuser = function( params, callback ) {
+
+            // Find the user record from db by id. Because "_retrieveById"
+            // begins with an underscore, it is a private method, not exposed
+            // to the public API.
+            this._retrieveById( params.id, function(result) {
+
+                // The 2nd parameter to the getuser method is "callback". It
+                // sends back the result in an HTTP response to the client.
+                callback( result );
+            })
+        };
+
+        this.adduser = function( params, callback ) {
+            this._addUser( params, function(add_status) {
+
+                // If callback argument is an object, then phantom
+                // automatically sends JSON back to client with appropriate
+                // Content-Type in the response.
+                callback( {status: add_status} );
+            });
+        }
+
+    }; // end of User function pointer
+
+    // Again, this Image module could be defined in another file and required.
+    var Image = function() {
+        this.getimage = function( params, callback ) {
+
+            // Instead of using the callback method, you can immediately
+            // send back a response using the JavaScript return keyword.
+            //
+            // Since value being sent in the response is not an object,
+            // the HTTP response will be plain text with applicable
+            // Content-Type set in the HTTP response. phantom just does
+            // what's right. (Don't worry, phantom allows you to override
+            // its default behavior if need be.)
+            return "this is plain text";
+        }
+
+    }; // end of Image function pointer
+
+    // Okay, we've defined our application, represented by the User
+    // and Image functions. Let's start up phantom-api to make the
+    // APIs available.
+    //
+    // First set basic custom configuration, then start up the server.
+    phantom.setCustomConfig( {DOC_ROOT: "/var/www/my_app/public",
+                              PORT: 7723} );
+
+    // Pass in module functions in a list.
+    phantom.run( [User, Image] );
+
+That's it. Now start up your app: $ node app.js
+
+As mentioned previously, please examine sample_app/app.js for more ideas.
+
 custom features
 ---------------
 
@@ -99,6 +169,9 @@ e.g.:
     };
 
     phantom.setCustomConfig( conf );
+
+    // If there's only a single function object in your app,
+    // list syntax is still allowed, but not required:
     phantom.run( MyApp );
 
 If setCustomConfig() method is called, then reading and processing
